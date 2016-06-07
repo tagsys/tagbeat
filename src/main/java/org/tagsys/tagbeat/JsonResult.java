@@ -2,7 +2,7 @@
 /**
  * Created by Lei Yang, 2016/4/2
  */
-package org.tagsys.tagscreen;
+package org.tagsys.tagbeat;
 
 import java.util.HashMap;
 

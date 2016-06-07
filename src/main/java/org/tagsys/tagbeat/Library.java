@@ -1,4 +1,4 @@
-package org.tagsys.tagscreen;
+package org.tagsys.tagbeat;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

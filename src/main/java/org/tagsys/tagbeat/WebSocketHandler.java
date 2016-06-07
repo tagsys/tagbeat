@@ -1,4 +1,4 @@
-package org.tagsys.tagscreen;
+package org.tagsys.tagbeat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,8 +13,8 @@ import java.util.Map;
 
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
-import org.tagsys.tagscreen.Library.Comment;
-import org.tagsys.tagscreen.Library.Content;
+import org.tagsys.tagbeat.Library.Comment;
+import org.tagsys.tagbeat.Library.Content;
 
 import com.google.gson.Gson;
 
