@@ -1,0 +1,33 @@
+{
+    "name": "java-angularjs-seed",
+    "version": "0.0.0",
+    "authors": [
+        "IvoNet <webmaster@ivonet.nl>"
+    ],
+    "description": "A java / maven / angularjs seed project",
+    "keywords": [
+        "java",
+        "maven",
+        "angularjs",
+        "seed"
+    ],
+    "license": "Apache 2.0",
+    "homepage": "http://ivonet.nl",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "src/main/webapp/vendor",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular-loader": "1.3.0-beta.14",
+        "angular-mocks": "1.3.0-beta.14",
+        "angular-route": "1.3.0-beta.14",
+        "angular": "1.3.0-beta.14",
+        "bootstrap": "3.2.0"
+    },
+    "main": "src/main/webapp/index.html"
+}
