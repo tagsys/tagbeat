@@ -1,30 +1,8 @@
 package org.tagsys.tagbeat;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.mina.common.RuntimeIOException;
-import org.sql2o.logging.SysOutLogger;
 
 import com.google.gson.Gson;
 
-import spark.Filter;
-import spark.Request;
-import spark.Response;
 import spark.Spark;
 
 public class Server {
@@ -33,10 +11,6 @@ public class Server {
 
 	public static void main(String[] args) {
 
-
-		BasicConfigurator.configure();
-
-		Logger.getRootLogger().setLevel(Level.INFO);
 
 		Spark.port(9093);
 
@@ -58,7 +32,7 @@ public class Server {
 		});
 
 
-		Spark.exception(RuntimeIOException.class, (e, req, resp) -> {
+		Spark.exception(Exception.class, (e, req, resp) -> {
 
 			resp.status(200);
 			resp.type("application/json");

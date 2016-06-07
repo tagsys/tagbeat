@@ -90,11 +90,6 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.llrp</groupId>
-			<artifactId>ltk</artifactId>
-			<version>10.16.0.240</version>
-		</dependency>
-		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
 			<version>9.2.5.v20141112</version>
@@ -128,7 +123,6 @@
 			<version>3.1</version>
 			<classifier>with-dependencies</classifier>
 		</dependency>
-
 	</dependencies>
 
 
@@ -148,7 +142,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>org.tagsys.tagsee.HubLauncher</mainClass>
+					<mainClass>org.tagsys.tagsee.Server</mainClass>
 					<arguments>
 					</arguments>
 				</configuration>
