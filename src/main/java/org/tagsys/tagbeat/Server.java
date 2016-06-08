@@ -30,6 +30,8 @@ public class Server {
 			resp.redirect("/index.html");
 			return "";
 		});
+		
+		
 
 
 		Spark.exception(Exception.class, (e, req, resp) -> {
