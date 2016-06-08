@@ -95,6 +95,18 @@ public class MathUtil {
 			signal[i] = signal[i]/max;
 		}
 	}
+	public static double[] findMax(double[] data){
+		double[] result = new double[2];
+		result[0] = Double.MIN_VALUE;
+		for(int i = 0; i < data.length;i++){
+			if(data[i] > result[0]){
+				result[0] = data[i];
+				result[1] = i;
+			}
+				
+		}
+		return result;
+	}
 			
 
 }
