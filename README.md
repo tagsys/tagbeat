@@ -1,4 +1,4 @@
-# Java / Maven / AngularJs seed project
+# Onoging project.... Under construction.
 
 ## Introduction
 
@@ -11,19 +11,16 @@ git clone https://github.com/IvoNet/java-angularjs-seed.git
 ```
 
 ## Prerequisites
-* Firefox or Chrome
-* [npm](https://www.npmjs.org)
-* [nodejs](http://nodejs.org)
-* [JDK](http://www.oracle.com/technetwork/java/javaee/downloads/index.html)
+* [TagSee] (https://github.com/tagsee/tagsee)
+* [JDK 8](http://www.oracle.com/technetwork/java/javaee/downloads/index.html)
+* [Maven] (https://maven.apache.org/index.html)
 * [IDE](http://www.jetbrains.com/)
 * [bower](http://bower.io)
-* [PhantomJs](http://phantomjs.org) or `brew install phantomjs`
-* [Application Server](https://glassfish.java.net/download.html) or `brew install glassfish`
 
 ## Installation
 
 ```bash
-mvn package
+mvn install & maven run:
 ```
 
 When running this command a couple of things happen:
