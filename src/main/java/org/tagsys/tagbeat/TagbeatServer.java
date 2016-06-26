@@ -3,19 +3,27 @@ package org.tagsys.tagbeat;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.tagsys.tagbeat.commands.ChangeFrameSize;
 import org.tagsys.tagbeat.commands.ChangeSampleNumber;
 import org.tagsys.tagbeat.commands.ChangeSparsity;
+import org.tagsys.tagbeat.commands.Filtering;
+import org.tagsys.tagbeat.commands.Replay;
 import org.tagsys.tagbeat.cr.CompressiveReading;
 
 import com.google.gson.Gson;
 
+import spark.Request;
 import spark.Spark;
+import spark.utils.StringUtils;
 
 public class TagbeatServer {
 	
 	private static Gson gson = new Gson();
+	
 
 	public static void main(String[] args) throws URISyntaxException {
 
@@ -26,6 +34,9 @@ public class TagbeatServer {
 		WebSocketClient socketClient = new WebSocketClient(new URI("ws://localhost:9092/socket"));
 
 		Spark.webSocket("/socket", WebSocketServer.class);
+
+		System.out.println(WebSocketServer.getInstance());
+		Processor processor = new Processor(socketClient);
 		
 		Spark.externalStaticFileLocation("public");
 
@@ -49,15 +60,15 @@ public class TagbeatServer {
 			String KString = req.queryParams("K");
 			
 			if(NString!=null){
-				socketClient.addCommmand(new ChangeSampleNumber(Integer.parseInt(NString)));
+				processor.addCommmand(new ChangeSampleNumber(Integer.parseInt(NString)));
 			}
 			
 			if(QString!=null){
-				socketClient.addCommmand(new ChangeFrameSize(Integer.parseInt(QString)));
+				processor.addCommmand(new ChangeFrameSize(Integer.parseInt(QString)));
 			}
 			
 			if(KString!=null){
-				socketClient.addCommmand(new ChangeSparsity(Integer.parseInt(KString)));
+				processor.addCommmand(new ChangeSparsity(Integer.parseInt(KString)));
 			}
 			
 			resp.type("application/json");
@@ -66,7 +77,56 @@ public class TagbeatServer {
 						
 		});
 		
+		Spark.get("/getFilters", (req, resp)->{
+			
+			resp.type("application/json");
+			JsonResult result = new JsonResult();
+			
+			result.put("filters", processor.getFilters());
+			
+			return result.toString();
+			
+		});
 		
+		Spark.post("/filtering", (req,resp)->{
+			
+			String body = req.body();
+			if (!StringUtils.isEmpty(body)) {
+				@SuppressWarnings("unchecked")
+				HashMap<String, Boolean> filters = (HashMap<String, Boolean>) gson.fromJson(body,
+						new HashMap<String, Boolean>().getClass());
+				
+				processor.addCommmand(new Filtering(processor, filters));
+				
+			}
+			
+			return new JsonResult();
+			
+		});
+		
+		Spark.get("/history", (rep,resp)->{
+			
+			JsonResult result = new JsonResult();
+			
+			List<String> filenames = HistoryReader.getHistory();
+			
+			result.put("history", filenames);
+			
+			return result;
+			
+		});
+		
+		Spark.get("/replay", (rep,resp)->{
+			
+			String filename = rep.queryParams("filename");
+					
+			processor.addCommmand(new Replay(processor, filename));
+			
+			return new JsonResult();
+			
+			
+		});
+				
 
 		Spark.exception(Exception.class, (e, req, resp) -> {
 

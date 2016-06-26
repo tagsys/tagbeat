@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.websocket.ClientEndpoint;
@@ -34,17 +35,12 @@ import com.google.gson.Gson;
 @ClientEndpoint
 public class WebSocketClient extends Thread {
 	
-
 	Session userSession = null;
 
 	Gson gson = new Gson();
 
-	Map<String, LinkedList<Tag>> readingBuffer = new HashMap<String, LinkedList<Tag>>();
-	
-	//The commands to be executed before compressive reading.
-	Queue<Command> commands = new  LinkedBlockingQueue<Command>();
+	Map<String, LinkedBlockingDeque<Tag>> readingBuffer = new HashMap<String, LinkedBlockingDeque<Tag>>();
 
-	public static CompressiveReading cr = CompressiveReading.instance();
 	
 	public WebSocketClient(URI endpointURI) {
 		try {
@@ -56,6 +52,24 @@ public class WebSocketClient extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void add(List<Tag> tags){
+		
+		for(Tag tag: tags){
+			
+			if(!readingBuffer.containsKey(tag.getEpc())){
+				readingBuffer.put(tag.getEpc(), new LinkedBlockingDeque<Tag>());
+			}
+			
+			readingBuffer.get(tag.getEpc()).add(tag);
+			
+		}
+		
+	}
+	
+	public void clear(){
+		this.readingBuffer.clear();
 	}
 
 	@OnOpen
@@ -81,10 +95,10 @@ public class WebSocketClient extends Thread {
 				for (Tag tag : reading.getTags()) {
 					
 					if (!readingBuffer.containsKey(tag.getEpc())) {
-						readingBuffer.put(tag.getEpc(), new LinkedList<Tag>());
+						readingBuffer.put(tag.getEpc(), new LinkedBlockingDeque<Tag>());
 					}
 
-					LinkedList<Tag> readingQueue = readingBuffer.get(tag.getEpc());
+					Queue<Tag> readingQueue = readingBuffer.get(tag.getEpc());
 
 					// remove the oldest one to avoid overflow
 					if (readingQueue.size() > 20000) {
@@ -106,67 +120,5 @@ public class WebSocketClient extends Thread {
 	}
 
 	
-	public void addCommmand(Command command){
-		this.commands.add(command);
-	}
-	
-	@Override
-	public void run() {
-
-		while (true) {
-			try {
-				Thread.sleep(100);
-				
-				Command command = commands.poll();
-				while(command!=null){
-					command.execute();
-					command = commands.poll();
-				}
-
-				
-				for (String epc : readingBuffer.keySet()) {
-					
-					
-					LinkedList<Tag> tags = readingBuffer.get(epc);
-
-					int size = tags.size();
-
-					List<Long> timeList = new ArrayList<Long>();
-
-					List<Double> phaseList = new ArrayList<Double>();
-				
-					if (size > 1 && (tags.get(size - 1).getFirstSeenTime() - tags.get(0).getFirstSeenTime()) > cr.getSampleNumber()*1000) {
-
-						Tag tag = null;
-						for (int i = 0; i < size; i++) {
-							tag = tags.poll();
-							if(tag!=null){
-								timeList.add(tag.getFirstSeenTime());
-								phaseList.add(tag.getPhase() / 4096.0 * 2 * Math.PI);
-							}
-						}
-
-						long[] time = new long[timeList.size()];
-						double[] phase = new double[phaseList.size()];
-						for (int i = 0; i < timeList.size(); i++) {
-							time[i] = timeList.get(i).longValue();
-							phase[i] = phaseList.get(i).doubleValue();
-						}
-
-						Signal signal = cr.recover(time, phase);
-
-						WebSocketServer.getInstance().broadcast(epc, signal);
-						
-						System.gc();
-
-					}
-
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
 
 }

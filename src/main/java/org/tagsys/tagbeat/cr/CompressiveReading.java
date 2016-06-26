@@ -100,14 +100,14 @@ public class CompressiveReading {
 
 	}
 
-	private Signal preprocess(long[] time, double[] phase) {
+	private Signal preprocess(List<Long> time, List<Double> phase) {
 		
 		System.out.println("N["+N+"],Q["+Q+"],K["+K+"]");
 
 		// ensure the length of samples is greater than N
-		long base = time[0];
-		for (int i = 0; i < time.length; i++) {
-			time[i] = (long) Math.floor((time[i] - base) / 1000.0);
+		Long base = time.get(0);
+		for (int i = 0; i < time.size(); i++) {
+			time.set(i, (long) Math.floor((time.get(i) - base) / 1000.0));
 		}
 		
 
@@ -117,11 +117,11 @@ public class CompressiveReading {
 
 		Arrays.fill(signal.timeIndicator, false);
 
-		for (int i = 0; i < time.length; i++) {
-			int index = (int) time[i];
+		for (int i = 0; i < time.size(); i++) {
+			int index = time.get(i).intValue();
 			if(index<N){
 				signal.timeIndicator[index] = true;
-				signal.phaseSeries.setEntry(index, 0, Math.sin(phase[i]));
+				signal.phaseSeries.setEntry(index, 0, Math.sin(phase.get(i)));
 			}
 		}
 		
@@ -138,7 +138,7 @@ public class CompressiveReading {
 		return signal;
 	}
 
-	public Signal recover(long[] time, double[] phase) throws Exception {
+	public Signal recover(List<Long> time, List<Double> phase) throws Exception {
 		
 		Signal signal = preprocess(time, phase);
 
@@ -224,15 +224,8 @@ public class CompressiveReading {
 					phaseList.add(Math.cos(i / 50.0));
 				}
 			}
-			long[] time = new long[timeList.size()];
-			double[] phase = new double[phaseList.size()];
-
-			for (int i = 0; i < timeList.size(); i++) {
-				time[i] = timeList.get(i);
-				phase[i] = phaseList.get(i);
-			}
-
-			Signal signal = new CompressiveReading().recover(time, phase);
+			
+			Signal signal = new CompressiveReading().recover(timeList, phaseList);
 
 			 long startoutput = System.currentTimeMillis();
 			 output(signal.phaseSeries,"D:\\x.txt");

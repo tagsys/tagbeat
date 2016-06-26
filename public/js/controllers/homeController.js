@@ -13,6 +13,10 @@ materialAdmin
 
     $scope.isReading = false;
 
+    $scope.playMode = false;
+
+    $scope.history = [];
+
     $scope.params = {
         N: 5000,
         Q: 5,
@@ -49,13 +53,38 @@ materialAdmin
     $scope.$watch('params.K', function(newValue, oldValue){
         if(newValue!=oldValue) {
             utilService.get("/changeParam?K=" + $scope.params.K).then(function (result) {
-                notifyService.notify("Succeeded set the parameter of K.", "info");
+                notifyService.notify("Succeeded to set the parameter of K.", "info");
             }, function (error) {
                 notifyService.notify("Failed to set the parameter of K.", "danger");
             });
         }
     })
     
+
+    $scope.togglePlay = function(){
+
+        $scope.playMode = !$scope.playMode;
+
+        utilService.get("/history").then(function(result){
+
+            console.log(result);
+            $scope.history = result.history;
+
+        },function(){
+            notifyService.notify("Failed to obtain history.", "danger");
+        })
+
+    }
+
+    $scope.play = function(filename){
+
+        utilService.get("/replay?filename="+filename).then(function(){
+            notifyService.notify("Succeeded to replay ("+filename+")", "info");
+        },function(){
+            notifyService.notify("Failed to replay ("+filename+")", "danger");
+        })
+
+    }
 
 
     $scope.start = function(){
@@ -78,31 +107,31 @@ materialAdmin
     $scope.stop = function(){
 
         utilService.get($scope.tagseeServer+"/service/agent/"+$scope.reader+"/stop").then(function(){
-
-
             $scope.isReading = false;
-
             notifyService.notify("Successfully stop the reader.", "info");
-
-
         },function(message){
-            sweetAlert("Oops....", "Something went wrong!", "error");
+            notifyService.notify("Successfully stop the reader.", "danger");
         })
     }
     
     $scope.check = function(value){
 
+        var filters = {};
         Object.keys($scope.tags).forEach(function (key) {
-
-            $scope.tags[key].checked = false;
-
+           filters[key] = $scope.tags[key].checked;
         })
 
-        value.checked = true;
+        utilService.post("/filtering", filters).then(function(){
+            notifyService.notify("Succeeded to set filters.", "info");
+        },function(){
+            notifyService.notify("Failed to set filters.", "danger");
+        });
 
-        $scope.current = value;
+    }
 
-        console.log(value);
+    $scope.refreshFilters = function(){
+
+
     }
 
 

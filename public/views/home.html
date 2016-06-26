@@ -16,15 +16,18 @@
                         Dashboard
                     </h2>
 
-                    <small>Please ensure the reader has been created in TagSee.</small>
+                    <small ng-show="!playMode">Please ensure the reader has been created in TagSee.</small>
+                    <small ng-show="playMode">Click on history for replay</small>
                     <ul class="actions">
                         <li>
-
+                            <a href="" ng-click="togglePlay()">
+                                <i class="zmdi zmdi-mail-reply"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="card-body card-padding text-center">
+                <div class="card-body card-padding text-center" ng-if="!playMode">
 
                     <div class="row">
                         <div class="col-sm-4">
@@ -54,6 +57,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card-body card-padding text-center" ng-if="playMode">
+
+
+                    <div class="row">
+                        <div class="col-sm-3" ng-repeat="filename in history" style="padding-bottom: 10px;text-align: left;">
+                            <button class="btn bgm-indigo btn-icon-text waves-effect" ng-click="play(filename)">
+                                <i class="zmdi zmdi-case-play"></i> {{filename}}
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
 
             <div class="card">
@@ -66,7 +83,7 @@
                     <div class="row">
                         <div class="row">
                             <div class="col-sm-4">
-                                <p class="c-black f-500 m-b-20">N (Sampling interval) [<span class="c-cyan">{{params.N}}</span>]</p>
+                                <p class="c-black f-500 m-b-20">Sample Number(N)[<span class="c-cyan">{{params.N}}</span>]</p>
                                 <div class="form-group">
                                     <div class="fg-line">
                                         <div class="select">
@@ -78,7 +95,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <p class="c-black f-500 m-b-20">Q (Frame size) [<span class="c-cyan">{{params.Q}}</span>]</p>
+                                <p class="c-black f-500 m-b-20">Frame size(Q) [<span class="c-cyan">{{params.Q}}</span>]</p>
 
                                 <div class="form-group">
                                     <div class="fg-line">
@@ -91,7 +108,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <p class="c-black f-500 m-b-20">K (Sparsity) [<span class="c-cyan">{{params.K}}</span>]</p>
+                                <p class="c-black f-500 m-b-20">Sparsity(K) [<span class="c-cyan">{{params.K}}</span>]</p>
 
                                 <div class="form-group">
                                     <div class="fg-line">
@@ -116,7 +133,7 @@
 
                     <ul class="actions">
                         <li>
-                            <a href="" ng-click="refresh()">
+                            <a href="" ng-click="refreshFilters()">
                                 <i class="zmdi zmdi-refresh c-white"></i>
                             </a>
                         </li>
@@ -139,7 +156,6 @@
                                            ng-change="check(value)">
                                     <i class="input-helper"></i>
                                     {{epc|uppercase}}
-                                    <span class="f-500 c-cyan">[{{value.signal.phaseSeries.data[0].length}}]</span>
                                 </label>
                             </div>
                         </div>

@@ -130,7 +130,7 @@ materialAdmin
             if(data.errorCode==0 && data.type=='cr'){
 
                 if(!service.tags[data.epc]) {
-                    service.tags[data.epc]={ epc:data.epc, checked:false, originalSignal:[], recoveredSignal:[],spectrum: null}
+                    service.tags[data.epc]={ epc:data.epc, checked:true, originalSignal:[], recoveredSignal:[],spectrum: null}
                 }
 
                 service.tags[data.epc].originalSignal = data.originalSignal;
