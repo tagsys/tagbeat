@@ -1,0 +1,212 @@
+
+<header id="header" data-current-skin="purple" data-ng-include="'template/header.html'" ng-controller="headerController" ></header>
+
+
+<section id="main">
+
+
+    <section id="content" class="page-view">
+
+        <div class="container" ng-controller="homeController">
+
+            <!-- Dashboard-->
+            <div class="card">
+                <div class="card-header ch-alt">
+                    <h2>
+                        Dashboard
+                    </h2>
+
+                    <small>Please ensure the reader has been created in TagSee.</small>
+                    <ul class="actions">
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body card-padding text-center">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">TagSee Server :</span>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control c-cyan f-700" ng-model="tagseeServer"  maxlength="15" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Reader IP :</span>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control c-cyan f-700" ng-model="reader"  maxlength="15" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-lg bgm-green waves-effect btn-icon-text"
+                                    ng-click="start()">Start
+                            </button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-lg bgm-red waves-effect btn-icon-text" ng-click="stop()">
+                                Stop
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header ch-alt">
+                    <h2>Settings</h2>
+                </div>
+
+
+                <div class="card-body card-padding" style="min-height: 100px;" >
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p class="c-black f-500 m-b-20">N (Sampling interval) [<span class="c-cyan">{{params.N}}</span>]</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select class="form-control"  ng-model="params.N"  ng-options="x for x in [500,1000,2000,3000,4000,5000,6000,7000,8000]">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <p class="c-black f-500 m-b-20">Q (Frame size) [<span class="c-cyan">{{params.Q}}</span>]</p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select id="Q" class="form-control"  ng-model="params.Q" ng-change="changeParam('Q')" ng-options="x for x in [5,7,9,11,13,15]">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <p class="c-black f-500 m-b-20">K (Sparsity) [<span class="c-cyan">{{params.K}}</span>]</p>
+
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select class="form-control"  ng-model="params.K" ng-change="changeParam('K')" ng-options="x for x in [5,10, 15,20,25,30]">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- filter dashboard -->
+            <div class="card">
+                <div class="card-header bgm-green">
+                    <h2>Filter
+                        <small>Using filter to determine which tags are focused.</small>
+                    </h2>
+
+                    <ul class="actions">
+                        <li>
+                            <a href="" ng-click="refresh()">
+                                <i class="zmdi zmdi-refresh c-white"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="toggle('filter')">
+                                <i ng-class="{'zmdi zmdi-caret-up-circle':widgets.filter, 'zmdi zmdi-caret-down-circle':!widgets.filter}"
+                                   style="color: white;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="card-body card-padding" style="min-height: 100px;" >
+                    <div class="row">
+                        <div class="col-sm-4" ng-repeat="(epc, value) in tags track by $index">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="value.checked"
+                                           ng-change="check(value)">
+                                    <i class="input-helper"></i>
+                                    {{epc|uppercase}}
+                                    <span class="f-500 c-cyan">[{{value.signal.phaseSeries.data[0].length}}]</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" >
+                <div class="card-header bgm-orange">
+                    <h2>Signal Series</h2>
+                    <ul class="actions">
+                        <li>
+                            <a href="" ng-click="refresh()">
+                                <i class="zmdi zmdi-refresh" style="color: white;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="configure()">
+                                <i class="zmdi zmdi-code-setting" style="color: white;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="toggle('rssiChart')">
+                                <i ng-class="{'zmdi zmdi-caret-up-circle':widgets.rssiChart, 'zmdi zmdi-caret-down-circle':!widgets.rssiChart}"
+                                   style="color: white;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--<button class="btn bgm-blue btn-float waves-effect"><i class="zmdi zmdi-plus"></i></button>-->
+                </div>
+                <div class="card-body card-padding" style="min-height: 100px;" >
+                    <highchart  config="phaseChartConfig"></highchart>
+                </div>
+            </div>
+
+            <!--<div class="card" >-->
+                <!--<div class="card-header bgm-orange">-->
+                    <!--<h2>Signal Series</h2>-->
+                    <!--<ul class="actions">-->
+                        <!--<li>-->
+                            <!--<a href="" ng-click="refresh()">-->
+                                <!--<i class="zmdi zmdi-refresh" style="color: white;"></i>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="" ng-click="configure()">-->
+                                <!--<i class="zmdi zmdi-code-setting" style="color: white;"></i>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="" ng-click="toggle('rssiChart')">-->
+                                <!--<i ng-class="{'zmdi zmdi-caret-up-circle':widgets.rssiChart, 'zmdi zmdi-caret-down-circle':!widgets.rssiChart}"-->
+                                   <!--style="color: white;"></i>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash;<button class="btn bgm-blue btn-float waves-effect"><i class="zmdi zmdi-plus"></i></button>&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="card-body card-padding" style="min-height: 100px;" >-->
+                    <!--<highchart  config="spectrumChartConfig"></highchart>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
