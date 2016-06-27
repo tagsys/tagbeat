@@ -102,7 +102,7 @@ Finally, start reading.
 If this project helps you, please help cite the following paper. Thanks very much.
 
 ```latex
-@inproceedings{yang2014tagoram,
+@inproceedings{yang2016tagbeat,
   title={Making Sense of Mechanical Vibration Period with Sub-millisecond Accuracy Using Backscatter Signals},
   author={Yang, Lei and Yao, Li and Lin, Qiongzheng and Li, Xiang-Yang and Liu, Yunhao},
   booktitle={Proceedings of ACM MobiCom},
