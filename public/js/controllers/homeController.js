@@ -198,7 +198,7 @@ materialAdmin
                 },
                 yAxis: {
                     title: {
-                        text: 'Radians'
+                        text: 'Sin(theta)'
                     }
                 },
                 legend: {

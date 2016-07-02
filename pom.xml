@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.tagsys</groupId>
 	<artifactId>tagbeat</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 
 	<developers>
 		<developer>
@@ -25,9 +25,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-math3</artifactId>
-		    <version>3.6.1</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.wendykierp</groupId>
@@ -124,8 +124,8 @@
 			<version>3.1</version>
 			<classifier>with-dependencies</classifier>
 		</dependency>
-		
-		<!-- WebSocket Client  -->
+
+		<!-- WebSocket Client -->
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-client-api</artifactId>
@@ -137,19 +137,19 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.glassfish.tyrus</groupId>
-		   <artifactId>tyrus-client</artifactId>
-		   <version>1.1</version>
+			<groupId>org.glassfish.tyrus</groupId>
+			<artifactId>tyrus-client</artifactId>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.glassfish.tyrus</groupId>
-		   <artifactId>tyrus-container-grizzly</artifactId>
-		   <version>1.1</version>
+			<groupId>org.glassfish.tyrus</groupId>
+			<artifactId>tyrus-container-grizzly</artifactId>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.httpcomponents</groupId>
-		    <artifactId>httpclient</artifactId>
-		    <version>4.5.2</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.2</version>
 		</dependency>
 
 	</dependencies>
@@ -175,10 +175,160 @@
 					</arguments>
 				</configuration>
 			</plugin>
+			<plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-dependency-plugin</artifactId>
+	                <configuration>
+	                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+	                    <excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
+	                    <stripVersion>false</stripVersion> <!-- 去除版本信息 -->
+	                </configuration>
+	
+	                <executions>
+	                    <execution>
+	                        <id>copy-dependencies</id>
+	                        <phase>package</phase>
+	                        <goals>
+	                            <goal>copy-dependencies</goal>
+	                        </goals>
+	                        <configuration>
+	                            <!-- 拷贝项目依赖包到lib/目录下 -->
+	                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+	                            <excludeTransitive>false</excludeTransitive>
+	                            <stripVersion>false</stripVersion>
+	                        </configuration>
+	                    </execution>
+	                </executions>
+	            </plugin>
+				<!-- 项目资源插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<executions>
+						<execution>
+							<id>copy-config</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
+								<outputDirectory>${project.build.directory}/config</outputDirectory>
+								<resources>
+									<resource>
+										<directory>config</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+						<execution>
+							<id>copy-eyes</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
+								<outputDirectory>${project.build.directory}/eyes</outputDirectory>
+								<resources>
+									<resource>
+										<directory>eyes</directory>
+										<filtering>false</filtering>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+						<execution>
+							<id>copy-public</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
+								<outputDirectory>${project.build.directory}/public</outputDirectory>
+								<resources>
+									<resource>
+										<directory>public</directory>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+						<execution>
+							<id>copy-benchmark</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
+								<outputDirectory>${project.build.directory}/benchmark</outputDirectory>
+								<resources>
+									<resource>
+										<directory>benchmark</directory>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+						<execution>
+							<id>copy-command</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<!-- 只拷贝项目src/main/resources/目录下的.bat文件到输出目录下 -->
+								<outputDirectory>${project.build.directory}</outputDirectory>
+								<resources>
+									<resource>
+										<directory>src/main/resources/</directory>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- 打包插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<archive>
+							<!-- 生成MANIFEST.MF的设置 -->
+							<manifest>
+								<!-- 为依赖包添加路径, 这些路径会写在MANIFEST文件的Class-Path下 -->
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>lib/</classpathPrefix>
+								<!-- jar启动入口类 -->
+								<mainClass>org.tagsys.tagbeat.TagbeatServer</mainClass>
+							</manifest>
+							<manifestEntries>
+								<!-- 在Class-Path下添加配置文件的路径 -->
+								<Class-Path>conf/</Class-Path>
+							</manifestEntries>
+						</archive>
+						<includes>
+							<!-- 打jar包时，只打包class文件 -->
+							<include>**/*.class</include>
+						</includes>
+					</configuration>
+				</plugin>
+			
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				
+
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>

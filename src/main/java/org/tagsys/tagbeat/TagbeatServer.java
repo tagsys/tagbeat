@@ -108,7 +108,7 @@ public class TagbeatServer {
 			
 			JsonResult result = new JsonResult();
 			
-			List<String> filenames = HistoryReader.getHistory();
+			List<String> filenames = Benchmark.getHistory();
 			
 			result.put("history", filenames);
 			

@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class HistoryReader {
+public class Benchmark {
 
 	
-	public static final String HISTORY_DIRECTORY = "./history";
+	public static final String HISTORY_DIRECTORY = "./benchmark";
 
 
 	public static List<Tag> read(String filename) throws IOException {

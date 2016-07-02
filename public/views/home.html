@@ -12,10 +12,12 @@
             <!-- Dashboard-->
             <div class="card">
                 <div class="card-header ch-alt">
-                    <h2>
+                    <h2 ng-show="!playMode">
                         Dashboard
                     </h2>
-
+                    <h2 ng-show="playMode">
+                        Benchmark
+                    </h2>
                     <small ng-show="!playMode">Please ensure the reader has been created in TagSee.</small>
                     <small ng-show="playMode">Click on history for replay</small>
                     <ul class="actions">
