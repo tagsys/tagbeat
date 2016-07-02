@@ -37,27 +37,23 @@ Basic and useful feature list:
 ## <strong>Supported Platforms</strong>
 
 * Windows/Mac/Linux + Java 8
-* ImpinJ R420 Reader + LTK SDK + <a href="http://github.com/tagsys/tagbeat" target="_blank">TagSee</a>
-
-## <strong>Snapshot</strong>
-
-
+* ImpinJ R420 Reader + LTK SDK + <a href="http://github.com/tagsys/tagsee" target="_blank">TagSee</a>
 
 ## <strong>Usage</strong>
 
-Please follow the simple three steps:
+Please follow three simple steps:
 
-1. Download tagbeat-xxx.zip and extract it to local disk
+1.Download tagbeat-xxx.zip and extract it to local disk
 
-2. If you want to perform the sensing in real-time,
+2.If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
 Otherwise, skip this step and test the benchmark samples offline.
 
-3. Run the 'startup.sh' or 'startup.bat' in 'terminal' (Mac) or 'cmd' (Windows)
+3.Run the 'startup.sh' or 'startup.bat' in 'terminal' (Mac) or 'cmd' (Windows)
 ```bash
 bash startup.sh
 ```
-4. Access the following page: <a href="http://localhost:9001">http://localhost:9001</a>
+4.Access the following page: <a href="http://localhost:9001">http://localhost:9001</a>
 
 ## <strong>Compiling</strong>
 
@@ -112,10 +108,10 @@ mvn run
 
 Tagbeat is built over TagSee. You can see the recovered vibration signals by either of the two methods:
 
-1. [Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
+1.[Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
 Finally, replay the readings offline through the Tagbeat dashboard.
 
-2. [Online] Start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard.
+2.[Online] Start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard.
 Finally, start reading.
 
 ## Reference
