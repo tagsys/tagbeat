@@ -12,7 +12,7 @@
         <td><strong>Download</strong></td>
     </tr>
     <tr>
-	    <td>1.0</td>
+	    <td>0.1</td>
     	<td>This verison can recover the vibration signal.</td>
         <td>2016/6/1</td>
         <td>TDB</td>
@@ -46,7 +46,7 @@ Please follow three simple steps:
 1.Download tagbeat-xxx.zip and extract it to local disk.
 
 2.Generate Fourier basis via the following matlab code.
-
+```matlab
 % Generate 500x500, 1000x1000, .... , 8000x8000 Fourier basis.
 for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
     phi = fft(eye(N,N))/sqrt(N);
@@ -60,6 +60,7 @@ for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
         end
     end
 end
+```
 Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>. Or, you can directly download these basis from here. Download and extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
 2.If you want to perform the sensing in real-time,
@@ -90,7 +91,7 @@ If you would like to compile the source code, then you could do it as follows:
 ```
 git clone https://github.com/tagsys/tagsee.git
 ```
-2.Generate Fourier basis (Please refer to Usage#2).
+2.Generate Fourier basis (Please refer to Usage#Step 2).
 
 3.Run the complie.sh, which will download the necessary Javascript dependencies.
 ```
@@ -103,13 +104,12 @@ mvn run
 
 ## <strong>Notice</strong>
 
-Tagbeat is built over TagSee. You can see the recovered vibration signals by either of the two methods:
+You can view the recovered vibration signals by either of the two methods:
 
 1.[Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
 Finally, replay the readings offline through the Tagbeat dashboard.
 
-2.[Online] Start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard.
-Finally, start reading.
+2.[Online] Tagbeat is built over TagSee. Please start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard. Finally, start reading.
 
 ## Reference
 
@@ -127,8 +127,4 @@ If this project helps you, please help cite the following paper. Thanks very muc
 
 ## Changelog
 
-* 2016/6/27 - release the Tagbeat v1.0
-
-## Acknowledgement
-
-This project acknowledges significant help, feedback, suggestions and guidance from following people.
+* 2016/6/27 - release the Tagbeat v0.1
