@@ -76,7 +76,7 @@ Otherwise, skip this step and test the benchmark samples offline.
 ```bash
 java -jar tagbeat-xxx.jar
 ```
-4.Access the following page: <a href="http://localhost:9001">http://localhost:9001</a>
+5.Access the following page: <a href="http://localhost:9001">http://localhost:9001</a>
 
 ## <strong>Compiling</strong>
 
