@@ -1,35 +1,120 @@
-# Onoging project.... Under construction.
+# <strong>Tagbeat - Sensing Vibration through Backscatter Signals!</strong>
 
-## Introduction
 
-This project aims to be a good starting point for a java / maven / angularjs project.
 
-check it out:
+## <strong>Version</strong>
 
+<table>
+    <tr>
+	    <td><strong>Version</strong></td>
+    	<td><strong>Description</strong></td>
+        <td><strong>Released Time</strong></td>
+        <td><strong>Download</strong></td>
+    </tr>
+    <tr>
+	    <td>1.0</td>
+    	<td>This verison can recover the vibration signal.</td>
+        <td>2016/6/1</td>
+        <td>TDB</td>
+    </tr>
+</table>
+
+
+## <strong>Features</strong>
+
+Traditional vibration inspection systems, equipped with separated sensing and communication modules,
+are either very expensive (e.g., hundreds of dollars) and/or suffer from occlusion and narrow field of view (e.g., laser).
+This paper brings forward a concept of ‘communication is sensing’,
+which is to make sense of the world purely based on communication carrier rather than specialized sensors.
+This project presents an RFID-based solution, Tagbeat, to inspect mechanical vibration using COTS RFID tags and readers.
+Basic and useful feature list:
+
+ * Over COTS RFID reader and tags.
+ * Compressive reading.
+ * Industrial measurement accuracy.
+ * A large number of benchmark samples.
+
+## <strong>Supported Platforms</strong>
+
+* Windows/Mac/Linux + Java 8
+* ImpinJ R420 Reader + <a href="http://github.com/tagsys/tagbeat" target="_blank">TagSee</a>
+
+## <strong>Snapshot</strong>
+
+
+## <strong>Usage</strong>
+
+Please follow the simple three steps:
+
+1. Download tagbeat-xxx.zip and extract it to local disk
+
+2. If you want to perform the sensing in real-time,
+please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
+Otherwise, skip this step and test the benchmark samples offline.
+
+3. Run the 'startup.sh' or 'startup.bat' in 'terminal' (Mac) or 'cmd' (Windows)
 ```bash
-git clone https://github.com/IvoNet/java-angularjs-seed.git
+bash startup.sh
+```
+4. Access the following page: <a href="http://localhost:9001">http://localhost:9001</a>
+
+## <strong>Compiling</strong>
+
+If you would like to compile the source code, then you could do it as follows:
+
+<strong>Prerequisite</strong>
+
+1. Install Apache Maven. (refer to <a href="https://maven.apache.org/install.html" target="_blank">Maven</a> client)
+
+2. Install Bower. (refer to <a href="http://bower.io/" target="_blank">Twitter Bower</a> client).
+
+3. Install Git. (refer to <a href="https://git-scm.com/downloads" target="_blank">Git</a> client.)
+
+<strong>Steps</strong>
+
+1.Checkout the source code.
+```
+git clone https://github.com/tagsys/tagsee.git
+```
+2.Download <a href="">Fourier bases</a> and extract it to the root directory of the project.
+
+3.Run the complie.sh, which will download the necessary Javascript dependencies.
+```
+bash comiple.sh
+```
+3.Run the project with Maven.
+```
+mvn run
 ```
 
-## Prerequisites
-* [TagSee] (https://github.com/tagsee/tagsee)
-* [JDK 8](http://www.oracle.com/technetwork/java/javaee/downloads/index.html)
-* [Maven] (https://maven.apache.org/index.html)
-* [IDE](http://www.jetbrains.com/)
-* [bower](http://bower.io)
+## <strong>Notice</strong>
 
-## Installation
+Tagbeat is built over TagSee. You can see the recovered vibration signals by either of the two methods:
 
-```bash
-mvn install & maven run:
+1. [Offline] Use TagSee to collect the readings. Download the reading results to history directory (<root_directory>/history/).
+Finally, replay the readings offline through the Tagbeat dashboard.
+
+2. [Online] Start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard.
+Finally, start reading.
+
+## Reference
+
+If this project helps you, please help cite the following paper. Thanks very much.
+
+```latex
+@inproceedings{yang2016tagbeat,
+  title={Making Sense of Mechanical Vibration Period with Sub-millisecond Accuracy Using Backscatter Signals},
+  author={Yang, Lei and Yao, Li and Lin, Qiongzheng and Li, Xiang-Yang and Liu, Yunhao},
+  booktitle={Proceedings of ACM MobiCom},
+  year={2016}
+}
+
 ```
 
-When running this command a couple of things happen:
-* Bower install will be run
-* JSLint will be run in src/main/javascript sources
-* Javascript will be minified
-* All the other standard maven phases.
+## Changelog
 
-## Status of the project
+* 2016/6/27 - release the Tagbeat v1.0
 
-See my [blog](http://www.ivonet.it/Java/java-angularjs-seed)
+## Acknowledgement
 
+This project acknowledges significant help, feedback, suggestions and guidance from following people.
