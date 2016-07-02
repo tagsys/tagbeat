@@ -84,10 +84,10 @@ public class CompressiveReading {
 
 		if (!eyeCache.containsKey(N)) {
 
-			File file = new File("./eyes/" + N + ".txt");
+			File file = new File("./basis/" + N + ".txt");
 			if (!file.exists()) {
 				throw new FourierBaseException(
-						"[ERROR]:Cannot find the file of Fourier bases. Please ensure download the files firstly.");
+						"[ERROR]:Cannot find the file of Fourier bases. Please generate them with Matlab firstly. Refer to the readme.md firsly.");
 			}
 
 			ComplexMatrix eye = new ComplexMatrix(N,N,file);

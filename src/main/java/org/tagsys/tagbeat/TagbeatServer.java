@@ -1,6 +1,7 @@
 package org.tagsys.tagbeat;
 
 
+import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -28,14 +29,17 @@ public class TagbeatServer {
 	public static void main(String[] args) throws URISyntaxException {
 
 
+		System.out.println("start tagbeat...");
+		
 		Spark.port(9001);
 		
+		
+		System.out.println("connect to Tagsee...");
 		//please ensure tagsee has been started firstly.
 		WebSocketClient socketClient = new WebSocketClient(new URI("ws://localhost:9092/socket"));
 
 		Spark.webSocket("/socket", WebSocketServer.class);
 
-		System.out.println(WebSocketServer.getInstance());
 		Processor processor = new Processor(socketClient);
 		
 		Spark.externalStaticFileLocation("public");
@@ -136,6 +140,23 @@ public class TagbeatServer {
 			resp.body(new JsonResult(505, e.getMessage()).toString());
 
 		});
+		
+		try {
+			 String url = "http://localhost:9001";
+
+		        if (Desktop.isDesktopSupported()) {
+		            // Windows
+		            Desktop.getDesktop().browse(new URI(url));
+		        } else {
+		            // Ubuntu
+		            Runtime runtime = Runtime.getRuntime();
+		            runtime.exec("/usr/bin/firefox -new-window " + url);
+		        }			
+		} catch (Exception e2) {
+			System.out.println("It fails to open the default brower.");
+		}
+		
+		System.out.println("You can access the dashboard at http://localhost:9001");
 		
 
 	}
