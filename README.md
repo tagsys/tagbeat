@@ -39,6 +39,10 @@ Basic and useful feature list:
 * Windows/Mac/Linux + Java 8
 * ImpinJ R420 Reader + LTK SDK + <a href="http://github.com/tagsys/tagsee" target="_blank">TagSee</a>
 
+## <strong>Snapshot</strong>
+
+ ![image](https://github.com/tagsys/tagbeat/blob/master/public/img/snapshot.png?raw=true)
+
 ## <strong>Usage</strong>
 
 Please follow three simple steps:
@@ -61,7 +65,8 @@ for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
     end
 end
 ```
-Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>. Or, you can directly download these basis from here. Download and extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
+Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
+Or, you can directly download these basis from here and then extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
 2.If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
