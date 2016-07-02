@@ -72,7 +72,7 @@ Or, you can directly download these basis from here and then extract it to the <
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
 Otherwise, skip this step and test the benchmark samples offline.
 
-3.Run the following command in terminal (Mac) or command (Windows)
+3.Run the following command in terminal (Mac) or command (Windows) under the extracted directory.
 ```bash
 java -jar tagbeat-xxx.jar
 ```
