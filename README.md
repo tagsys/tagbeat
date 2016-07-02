@@ -96,14 +96,14 @@ end
 
 ```
 Note: Please grab a coffee. It will take a very very long time to generate these basis.
-When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to <code><PROJECT_ROOT_DIRECTORY>/basis</code>.
+When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to <code> PROJECT_ROOT_DIRECTORY/basis</code>.
 Or, you can directly download these basis from here. Extract it to the project directory.
 
 3.Run the complie.sh, which will download the necessary Javascript dependencies.
 ```
 bash comiple.sh
 ```
-3.Run the project with Maven.
+4.Run the project with Maven.
 ```
 mvn run
 ```
@@ -112,7 +112,7 @@ mvn run
 
 Tagbeat is built over TagSee. You can see the recovered vibration signals by either of the two methods:
 
-1. [Offline] Use TagSee to collect the readings. Download the reading results to history directory (<root_directory>/history/).
+1. [Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
 Finally, replay the readings offline through the Tagbeat dashboard.
 
 2. [Online] Start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard.
