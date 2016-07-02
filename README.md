@@ -43,7 +43,24 @@ Basic and useful feature list:
 
 Please follow three simple steps:
 
-1.Download tagbeat-xxx.zip and extract it to local disk
+1.Download tagbeat-xxx.zip and extract it to local disk.
+
+2.Generate Fourier basis via the following matlab code.
+
+% Generate 500x500, 1000x1000, .... , 8000x8000 Fourier basis.
+for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
+    phi = fft(eye(N,N))/sqrt(N);
+
+    file = fopen(strcat(num2str(N),'.txt'),'w');
+
+    [M,N] = size(phi);
+    for i=1:M
+        for j=1:N
+            fprintf(file,'%d %d %d %d\n',i,j,real(phi(i,j)),imag(phi(i,j)));
+        end
+    end
+end
+Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>. Or, you can directly download these basis from here. Download and extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
 2.If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
@@ -73,27 +90,7 @@ If you would like to compile the source code, then you could do it as follows:
 ```
 git clone https://github.com/tagsys/tagsee.git
 ```
-2.Generate Fourier basis via the following matlab code.
-```matlab
-
-% Generate 500x500, 1000x1000, .... , 8000x8000 Fourier basis.
-for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
-    phi = fft(eye(N,N))/sqrt(N);
-
-    file = fopen(strcat(num2str(N),'.txt'),'w');
-
-    [M,N] = size(phi);
-    for i=1:M
-        for j=1:N
-            fprintf(file,'%d %d %d %d\n',i,j,real(phi(i,j)),imag(phi(i,j)));
-        end
-    end
-end
-
-```
-Note: Please grab a coffee. It will take a very very long time to generate these basis.
-When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to <code> PROJECT_ROOT_DIRECTORY/basis</code>.
-Or, you can directly download these basis from here. Extract it to the project directory.
+2.Generate Fourier basis (Please refer to Usage#2).
 
 3.Run the complie.sh, which will download the necessary Javascript dependencies.
 ```
