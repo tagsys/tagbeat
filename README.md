@@ -96,7 +96,7 @@ end
 
 ```
 Note: Please grab a coffee. It will take a very very long time to generate these basis.
-When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" into the directory of "basis" of the project.
+When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to <code><PROJECT_ROOT_DIRECTORY>/basis</code>.
 Or, you can directly download these basis from here. Extract it to the project directory.
 
 3.Run the complie.sh, which will download the necessary Javascript dependencies.
