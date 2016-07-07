@@ -65,6 +65,8 @@ Otherwise, skip this step and test the benchmark samples offline.
 ```bash
 java -jar tagbeat-xxx.jar
 ```
+The tagbeat will try to connect tagsee. If you don't start tagsee, please just wait for the request timeout.
+
 5.Access the following page: [http://localhost:9001](http://localhost:9001).
 
 ## <strong>Compiling</strong>
