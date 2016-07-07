@@ -36,9 +36,9 @@ Basic and useful feature list:
 
 Please follow three simple steps:
 
-1.Download tagbeat-xxx.zip and extract it to local disk.
+(1). Download tagbeat-xxx.zip and extract it to local disk.
 
-2.Generate Fourier basis via the following matlab code.
+(2). Generate Fourier basis via the following matlab code.
 ```matlab
 % Generate 500x500, 1000x1000, .... , 8000x8000 Fourier basis.
 for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
@@ -57,11 +57,11 @@ end
 Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
 Or, you can directly download these basis [here](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) and then extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
-3.If you want to perform the sensing in real-time,
+(3). If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
 Otherwise, skip this step and test the benchmark samples offline.
 
-4.Run the following command in terminal (Mac) or command (Windows) under the extracted directory.
+(4). Run the following command in terminal (Mac) or command (Windows) under the extracted directory.
 ```bash
 java -jar tagbeat-xxx.jar
 ```
