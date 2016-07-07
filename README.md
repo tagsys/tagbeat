@@ -93,9 +93,13 @@ git clone https://github.com/tagsys/tagsee.git
 ```
 bash comiple.sh
 ```
-4.Run the project with Maven.
+4.Install the project with Maven.
 ```
-mvn run
+mvn install
+```
+5.Run the project with Maven.
+```
+mvn exec:java
 ```
 
 ## <strong>Notice</strong>
