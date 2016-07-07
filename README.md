@@ -36,9 +36,9 @@ Basic and useful feature list:
 
 Please follow three simple steps:
 
-(1). Download tagbeat-xxx.zip and extract it to local disk.
+(1) Download tagbeat-xxx.zip and extract it to local disk.
 
-(2). Generate Fourier basis via the following matlab code.
+(2) Generate Fourier basis via the following matlab code.
 ```matlab
 % Generate 500x500, 1000x1000, .... , 8000x8000 Fourier basis.
 for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
@@ -57,17 +57,17 @@ end
 Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
 Or, you can directly download these basis [here](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) and then extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
-(3). If you want to perform the sensing in real-time,
+(3) If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
 Otherwise, skip this step and test the benchmark samples offline.
 
-(4). Run the following command in terminal (Mac) or command (Windows) under the extracted directory.
+(4) Run the following command in terminal (Mac) or command (Windows) under the extracted directory.
 ```bash
 java -jar tagbeat-xxx.jar
 ```
 The tagbeat will try to connect tagsee. If you don't start tagsee, please just wait for the request timeout.
 
-5.Access the following page: [http://localhost:9001](http://localhost:9001).
+(5) Access the following page: [http://localhost:9001](http://localhost:9001).
 
 ## <strong>Compiling</strong>
 
@@ -75,29 +75,29 @@ If you would like to compile the source code, then you could do it as follows:
 
 <strong>Prerequisite</strong>
 
-1. Install Apache Maven. (refer to <a href="https://maven.apache.org/install.html" target="_blank">Maven</a> client)
+ (1) Install Apache Maven. (refer to <a href="https://maven.apache.org/install.html" target="_blank">Maven</a> client)
 
-2. Install Bower. (refer to <a href="http://bower.io/" target="_blank">Twitter Bower</a> client).
+ (2) Install Bower. (refer to <a href="http://bower.io/" target="_blank">Twitter Bower</a> client).
 
-3. Install Git. (refer to <a href="https://git-scm.com/downloads" target="_blank">Git</a> client.)
+ (3) Install Git. (refer to <a href="https://git-scm.com/downloads" target="_blank">Git</a> client.)
 
 <strong>Steps</strong>
 
-1.Checkout the source code.
+ (1) Checkout the source code.
 ```
 git clone https://github.com/tagsys/tagsee.git
 ```
-2.Generate Fourier basis (Please refer to Usage#Step 2).
+ (2) Generate Fourier basis (Please refer to Usage#Step 2).
 
-3.Run the complie.sh, which will download the necessary Javascript dependencies.
+ (3) Run the complie.sh, which will download the necessary Javascript dependencies.
 ```
 bash comiple.sh
 ```
-4.Install the project with Maven.
+ (4) Install the project with Maven.
 ```
 mvn install
 ```
-5.Run the project with Maven.
+ (5) Run the project with Maven.
 ```
 mvn exec:java
 ```
@@ -106,10 +106,10 @@ mvn exec:java
 
 You can view the recovered vibration signals by either of the two methods:
 
-1.[Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
+(1) [Offline] Use TagSee to collect the readings. Download the reading results to benchmark directory (<code>PROJECT_ROOT_DIRECTORY/history/</code>).
 Finally, replay the readings offline through the Tagbeat dashboard.
 
-2.[Online] Tagbeat is built over TagSee. Please start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard. Finally, start reading.
+(2) [Online] Tagbeat is built over TagSee. Please start TagSee and create a reader agent. Input the TagSee and agent IP in the Tagbeat dashboard. Finally, start reading.
 
 ## Reference
 
