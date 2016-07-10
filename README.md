@@ -54,7 +54,7 @@ for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
     end
 end
 ```
-Note: Please grab a coffee. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
+Note: Please grab a coffee to kill time. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
 Or, you can directly download these basis [here](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) and then extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
 
 (3) If you want to perform the sensing in real-time,
