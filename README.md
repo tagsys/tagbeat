@@ -1,6 +1,7 @@
 # <strong>Tagbeat - Sensing Vibration through Backscatter Signals!</strong>
 
-<a href="https://www.youtube.com/embed/2QOaLTucS1M" target="_blank"><img src="http://img.youtube.com/vi/R0uufIdWCD4/0.jpg" 
+<a href="https://www.youtube.com/embed/2QOaLTucS1M" target="_blank">
+<img src="https://www.youtube.com/upload_thumbnail?v=2QOaLTucS1M&t=hqdefault&ts=1472743803894" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## <strong>Version</strong>
