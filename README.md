@@ -1,6 +1,6 @@
 # <strong>Tagbeat - Sensing Vibration through Backscatter Signals!</strong>
 
-<a href="https://www.youtube.com/embed/2QOaLTucS1M" target="_blank">Youtube</a>
+<a href="https://youtu.be/2QOaLTucS1M" target="_blank">Youtube</a>
 
 ## <strong>Version</strong>
 | Version | Description | Time | Download |
