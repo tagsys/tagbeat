@@ -1,6 +1,7 @@
 # <strong>Tagbeat - Sensing Vibration through Backscatter Signals!</strong>
 
-
+<a href="https://www.youtube.com/embed/2QOaLTucS1M" target="_blank"><img src="http://img.youtube.com/vi/R0uufIdWCD4/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ## <strong>Version</strong>
 | Version | Description | Time | Download |
@@ -23,7 +24,6 @@ Basic and useful feature list:
  * Industrial measurement accuracy.
  * A large number of benchmark samples.
  
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2QOaLTucS1M" frameborder="0" allowfullscreen></iframe>
 
 ## <strong>Supported Platforms</strong>
 
