@@ -86,7 +86,7 @@ If you would like to compile the source code, then you could do it as follows:
 
  (1) Checkout the source code.
 ```
-git clone https://github.com/tagsys/tagsee.git
+git clone https://github.com/tagsys/tagbeat.git
 ```
  (2) Generate Fourier basis (Please refer to Usage#Step 2).
 
