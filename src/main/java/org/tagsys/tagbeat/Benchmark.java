@@ -20,6 +20,11 @@ public class Benchmark {
 
 		List<Tag> tags = new LinkedList<Tag>();
 		BufferedReader br = new BufferedReader(new FileReader(HISTORY_DIRECTORY+"/"+filename));
+		
+		int v = 0;//default version
+		if(filename.contains(".v2.")){
+			v = 2;// for tagsee default format
+		}
 
 		String line = br.readLine();
 		line = br.readLine();// ignore the first row;
@@ -29,17 +34,27 @@ public class Benchmark {
 			String[] fields = line.split(",");
 
 			Tag tag = new Tag();
-			tag.setEpc(fields[0]);
-			tag.setAntenna(Integer.parseInt(fields[1]));
-			tag.setChannel(Integer.parseInt(fields[2]));
-			tag.setDoppler(Integer.parseInt(fields[3]));
-			tag.setRssi(Integer.parseInt(fields[4]));
-			tag.setPeekRssi(Integer.parseInt(fields[5]));
-			tag.setPhase(Integer.parseInt(fields[6]));
-			tag.setFirstSeenTime(Long.parseLong(fields[7]));
-			tag.setLastSeenTime(Long.parseLong(fields[8]));
-			tag.setSeenCount(Integer.parseInt(fields[9]));
-			tag.setTimestamp(Long.parseLong(fields[10]));
+			if(v == 0){
+				tag.setEpc(fields[0]);
+				tag.setAntenna(Integer.parseInt(fields[1]));
+				tag.setChannel(Integer.parseInt(fields[2]));
+				tag.setDoppler(Integer.parseInt(fields[3]));
+				tag.setRssi(Integer.parseInt(fields[4]));
+				tag.setPeekRssi(Integer.parseInt(fields[5]));
+				tag.setPhase(Integer.parseInt(fields[6]));
+				tag.setFirstSeenTime(Long.parseLong(fields[7]));
+				tag.setLastSeenTime(Long.parseLong(fields[8]));
+				tag.setSeenCount(Integer.parseInt(fields[9]));
+				tag.setTimestamp(Long.parseLong(fields[10]));
+			}else if(v == 2){
+				tag.setEpc(fields[0]);
+				tag.setAntenna(Integer.parseInt(fields[1]));
+				tag.setChannel(Integer.parseInt(fields[2]));
+				tag.setPhase(Integer.parseInt(fields[3]));
+				tag.setRssi(Integer.parseInt(fields[4]));
+				tag.setFirstSeenTime(Long.parseLong(fields[5]));
+				tag.setTimestamp(Long.parseLong(fields[6]));				
+			}
 
 			tags.add(tag);
 

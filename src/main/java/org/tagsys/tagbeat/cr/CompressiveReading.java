@@ -145,6 +145,13 @@ public class CompressiveReading {
 		return recover(signal);
 
 	}
+	
+	private double seekFrequency(Signal signal){
+		
+		
+		return 0;
+		
+	}
 
 	public Signal recover(Signal signal) throws Exception {
 
@@ -201,13 +208,21 @@ public class CompressiveReading {
 			pos_array[times] = pos;
 
 		}
-		for (int i = 0; i < m; i++)
+		for (int i = 0; i < m; i++){
 			hat_y.setEntry(0, pos_array[i], Aug_y.getEntry(i, 0));
+		}
 		ComplexMatrix hat_x = Psi.transpose().multiply(hat_y.dotTranspose());
 		signal.recoveredSeries = hat_x.real;
 		System.out.println("compressiveReading time: " + (System.currentTimeMillis() - start));
+		
+		
+		
+		
 		return signal;
 	}
+	
+	
+
 
 	public static void main(String[] args) {
 		try {
@@ -249,7 +264,6 @@ public class CompressiveReading {
 				fw.write(data[i] + " ");
 			fw.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

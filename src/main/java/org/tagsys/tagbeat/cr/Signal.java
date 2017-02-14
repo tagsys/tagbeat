@@ -18,6 +18,9 @@ public  class Signal{
 		
 		protected RealMatrix recoveredSeries;
 		
+		protected double frequency;//the fundamental frequency
+		
+
 		public boolean[] getTimeIndicator() {
 			return timeIndicator;
 		}
@@ -48,6 +51,14 @@ public  class Signal{
 
 		public void setRecoveredSeries(RealMatrix recoveredSeries) {
 			this.recoveredSeries = recoveredSeries;
+		}
+		
+		public double getFrequency() {
+			return frequency;
+		}
+
+		public void setFrequency(double frequency) {
+			this.frequency = frequency;
 		}
 		
 	
