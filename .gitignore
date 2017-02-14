@@ -1,6 +1,7 @@
 .idea/
 .DS_Store
 node_modules/
+public/vendors/
 /target/
 basis/1000.txt
 basis/2000.txt
