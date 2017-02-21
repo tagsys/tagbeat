@@ -142,14 +142,14 @@ public class CompressiveReading {
 		
 		Signal signal = preprocess(time, phase);
 
-		return recover(signal);
+		return seekFrequency(recover(signal));
 
 	}
 	
-	private double seekFrequency(Signal signal){
+	private Signal seekFrequency(Signal signal){
 		
-		
-		return 0;
+		//todo 
+		return signal;
 		
 	}
 
