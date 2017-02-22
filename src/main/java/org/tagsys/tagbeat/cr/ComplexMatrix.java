@@ -1,10 +1,6 @@
 package org.tagsys.tagbeat.cr;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -46,22 +42,25 @@ public class ComplexMatrix {
 		this(M,N);
 		real = MatrixUtils.createRealMatrix(M, N);
 		imag = MatrixUtils.createRealMatrix(M, N);
-		InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
-		BufferedReader br = new BufferedReader(reader);
-		String line = "";
-		line = br.readLine();
 		int row, column;
-		String[] temp;
-		while (line != null) {
-			temp = line.split(" ");
-			row = Integer.parseInt(temp[0]) - 1;
-			column = Integer.parseInt(temp[1]) - 1;
-			real.setEntry(row, column, Double.parseDouble(temp[2]));
-			imag.setEntry(row, column, Double.parseDouble(temp[3]));
-			line = br.readLine();
+		try
+		{
+			DataInputStream inData=new DataInputStream(
+					new BufferedInputStream(
+							new FileInputStream(file)));
+			for (row = 0;row<M;row++){
+				for (column = 0;column<N;column++){
+					if(inData.available()!=0){
+						real.setEntry(row, column, inData.readDouble());
+						imag.setEntry(row, column, inData.readDouble());
+					}
+				}
+			}
+			inData.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
 		}
-		br.close();
-
 	}
 
 	public ComplexMatrix scalarMultiply(double m) {

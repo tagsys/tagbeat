@@ -84,7 +84,7 @@ public class CompressiveReading {
 
 		if (!eyeCache.containsKey(N)) {
 
-			File file = new File("./basis/" + N + ".txt");
+			File file = new File("./basis/" + N + ".bin");
 			if (!file.exists()) {
 				throw new FourierBaseException(
 						"[ERROR]:Cannot find the file of Fourier bases. Please generate them with Matlab firstly. Refer to the readme.md firsly.");
