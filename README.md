@@ -8,12 +8,6 @@
 | 0.2     |This verison can recover the vibration signal. | 2017/5/27 |  [tagbeat-v0.2](https://dl.dropboxusercontent.com/u/24821416/tagbeat/tagbeat-0.2.jar)|
 | 0.1     |This verison can recover the vibration signal. | 2016/6/1 |  [tagbeat-v0.1](https://www.dropbox.com/s/k3b2k9ltf85zk9v/tagbeat-v0.1.zip?dl=0)|
 
-##<strong>Fourier basis</strong>
-| Version | Description | Time | Download |
-|---------|-------------|------|----------|
-|0.2      |Fourier basis for 500x500, 1000x1000, 2000x2000, ...., 8000x8000| 2016/7/7 | [Fourier basis](https://github.com/tagsys/tagbeat/tree/master/basis) |
-|0.1      |Fourier basis for 500x500, 1000x1000, 2000x2000, ...., 8000x8000| 2016/7/7 | [Fourier basis](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) |
-
 
 ## <strong>Features</strong>
 
