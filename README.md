@@ -5,8 +5,8 @@
 ## <strong>Version</strong>
 | Version | Description | Time | Download |
 |---------|-------------|------|----------|
-| 0.2     |This verison can recover the vibration signal. | 2017/5/27 |  [tagbeat-v0.2](https://dl.dropboxusercontent.com/u/24821416/tagbeat/tagbeat-0.2.jar)|
-| 0.1     | Update user interface. | 2016/6/1 |  [tagbeat-v0.1](https://www.dropbox.com/s/k3b2k9ltf85zk9v/tagbeat-v0.1.zip?dl=0)|
+| 0.2     | Update the user interface. | 2017/5/27 |  [tagbeat-v0.2](https://dl.dropboxusercontent.com/u/24821416/tagbeat/tagbeat-0.2.jar)|
+| 0.1     | Initial version | 2016/6/1 |  [tagbeat-v0.1](https://www.dropbox.com/s/k3b2k9ltf85zk9v/tagbeat-v0.1.zip?dl=0)|
 
 
 ## <strong>Features</strong>
