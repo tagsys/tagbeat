@@ -5,7 +5,7 @@
 ## <strong>Version</strong>
 | Version | Description | Time | Download |
 |---------|-------------|------|----------|
-| 0.2     | Update the user interface. | 2017/5/27 |  [tagbeat-v0.2](https://dl.dropboxusercontent.com/u/24821416/tagbeat/tagbeat-v0.2.zip)|
+| 0.2     | Update the user interface. | 2017/5/27 |  [tagbeat-v0.2](https://www.dropbox.com/s/wvagf0f2oyt9j0q/tagbeat-v0.2.zip?dl=0)|
 | 0.1     | Initial version | 2016/6/1 |  [tagbeat-v0.1](https://www.dropbox.com/s/k3b2k9ltf85zk9v/tagbeat-v0.1.zip?dl=0)|
 
 
