@@ -5,7 +5,13 @@
 ## <strong>Version</strong>
 | Version | Description | Time | Download |
 |---------|-------------|------|----------|
+| 0.2     |This verison can recover the vibration signal. | 2017/5/27 |  [tagbeat-v0.2](https://dl.dropboxusercontent.com/u/24821416/tagbeat/tagbeat-0.2.jar)|
 | 0.1     |This verison can recover the vibration signal. | 2016/6/1 |  [tagbeat-v0.1](https://www.dropbox.com/s/k3b2k9ltf85zk9v/tagbeat-v0.1.zip?dl=0)|
+
+##<strong>Fourier basis</strong>
+| Version | Description | Time | Download |
+|---------|-------------|------|----------|
+|0.2      |Fourier basis for 500x500, 1000x1000, 2000x2000, ...., 8000x8000| 2016/7/7 | [Fourier basis](https://github.com/tagsys/tagbeat/tree/master/basis) |
 |0.1      |Fourier basis for 500x500, 1000x1000, 2000x2000, ...., 8000x8000| 2016/7/7 | [Fourier basis](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) |
 
 
@@ -56,7 +62,7 @@ for N=[500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
 end
 ```
 Note: Please grab a coffee to kill time. It will take a very very long time to generate these basis. When finished, please copy "500.txt, 1000.txt, ..., 8000.txt" to  <code>PROJECT_ROOT_DIRECTORY/basis/</code>.
-Or, you can directly download these basis [here](https://www.dropbox.com/s/90gmdpfg4lz9enb/basis.zip?dl=0) and then extract it to the <code>PROJECT_ROOT_DIRECTORY/</code>.
+Or, you can directly download these basis [here](https://github.com/tagsys/tagbeat/tree/master/basis) and then extract them to the <code>PROJECT_ROOT_DIRECTORY/basis</code>.
 
 (3) If you want to perform the sensing in real-time,
 please start up TagSee and create a reader agent corresponding to your physical ImpinJ reader.
