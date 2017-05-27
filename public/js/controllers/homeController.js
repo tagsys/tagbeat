@@ -7,7 +7,7 @@ materialAdmin
 
     $scope.tagseeServer = "http://127.0.0.1:9092";
 
-    $scope.reader = "192.168.1.213";
+    $scope.sAgent = "";
 
     $scope.tags = dataService.tags;
 
@@ -87,31 +87,58 @@ materialAdmin
     }
 
 
-    $scope.start = function(){
+    $scope.start = function(sAgent){
 
-        utilService.get($scope.tagseeServer+"/service/agent/"+$scope.reader+"/start").then(function(){
+        if(!sAgent) {
+            sweetAlert("Oops....", "Please discover and select one agent firstly.", "error");
+            return;
+        }
 
-            $scope.isReading = true;
+        utilService.post("/start",{
+            "tagseeIP":$scope.tagseeServer,
+            "agentIP": sAgent
+
+        }).then(function(){
 
             notifyService.notify("Successfully start the reader.", "info");
 
         },function(message){
 
+            console.log(message);
+            notifyService.notify("Failed to start the reader:"+message.errorMessage, "danger");
 
-            sweetAlert("Oops....", "Something went wrong!", "error");
 
         })
 
     }
 
-    $scope.stop = function(){
+    $scope.stop = function(sAgent){
 
-        utilService.get($scope.tagseeServer+"/service/agent/"+$scope.reader+"/stop").then(function(){
+        if(!sAgent) {
+            sweetAlert("Oops....", "Please discover and select one agent firstly.", "error");
+            return;
+        }
+
+        utilService.get($scope.tagseeServer+"/service/agent/"+sAgent+"/stop").then(function(){
             $scope.isReading = false;
             notifyService.notify("Successfully stop the reader.", "info");
         },function(message){
-            notifyService.notify("Successfully stop the reader.", "danger");
+            console.log(message);
+            notifyService.notify("Failed to stop the reader:"+message.errorMessage, "danger");
         })
+    }
+
+    $scope.discoverAgents = function(){
+
+        utilService.get($scope.tagseeServer+"/service/discover").then(function(data){
+            $scope.agents = data.agents;
+            console.log(data);
+            console.log(data.agents)
+        },function(message){
+            console.log(message);
+            notifyService.notify("Failed to stop the reader:"+message.errorMessage, "danger");
+        })
+
     }
     
     $scope.check = function(value){

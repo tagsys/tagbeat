@@ -1,5 +1,6 @@
 package org.tagsys.tagbeat;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,22 +34,21 @@ import com.google.gson.Gson;
  *
  */
 @ClientEndpoint
-public class WebSocketClient extends Thread {
+public class WebSocketClient  {
 	
-	Session userSession = null;
+//	Session userSession = null;
 
 	Gson gson = new Gson();
 
 	Map<String, LinkedBlockingDeque<Tag>> readingBuffer = new HashMap<String, LinkedBlockingDeque<Tag>>();
 
-	
+	private  Session session;
+		
 	public WebSocketClient(URI endpointURI) {
 		try {
 			WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-			container.connectToServer(this, endpointURI);
+			session = container.connectToServer(this, endpointURI);
 
-			this.start();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,19 +68,27 @@ public class WebSocketClient extends Thread {
 		
 	}
 	
+	public void disconnect() throws IOException{
+		
+	
+		
+		this.session.close();
+				
+	}
+	
 	public void clear(){
 		this.readingBuffer.clear();
 	}
 
-	@OnOpen
-	public void onOpen(Session userSession) {
-		this.userSession = userSession;
-	}
-
-	@OnClose
-	public void onClose(Session userSession, CloseReason reason) {
-		this.userSession = null;
-	}
+//	@OnOpen
+//	public void onOpen(Session userSession) {
+//		this.userSession = userSession;
+//	}
+//
+//	@OnClose
+//	public void onClose(Session userSession, CloseReason reason) {
+//		this.userSession = null;
+//	}
 
 	@OnMessage
 	@SuppressWarnings("unchecked")

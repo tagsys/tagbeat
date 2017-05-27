@@ -24,6 +24,8 @@ public class Processor extends Thread{
 	
 	HashMap<String, Boolean> filters = new HashMap<String, Boolean>();
 	
+	protected boolean stopped = false;
+	
 	public static CompressiveReading cr = CompressiveReading.instance();
 
 
@@ -47,10 +49,16 @@ public class Processor extends Thread{
 		return this.socketClient;
 	}
 	
+	public void terminate(){
+		
+		this.stopped = true;
+		
+	}
+	
 	@Override
 	public void run() {
 
-		while (true) {
+		while (stopped==false) {
 			try {
 				Thread.sleep(100);
 				

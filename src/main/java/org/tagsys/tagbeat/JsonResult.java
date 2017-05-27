@@ -26,6 +26,7 @@ public class JsonResult extends HashMap<String, Object>{
 	}
 	
 	public JsonResult(int errorCode, String errorMessage){
+		this(errorCode);
 		this.put("errorMessage", errorMessage);
 	}
 	

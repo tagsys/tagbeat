@@ -68,14 +68,17 @@ public class WebSocketServer {
     	sessions.stream().filter(Session::isOpen).forEach(session->{
     		try {
 				
-    			JsonResult result = new JsonResult();
-    			result.put("type", "cr");
-    			result.put("epc", epc);
-    			
-    			result.put("originalSignal", signal.getPhaseSeries().getColumn(0));
-    			result.put("recoveredSignal", signal.getRecoveredSeries().getColumn(0));
-    			
-    			session.getRemote().sendString(result.toString());
+    			if(session.isOpen()){
+    				JsonResult result = new JsonResult();
+        			result.put("type", "cr");
+        			result.put("epc", epc);
+        			
+        			result.put("originalSignal", signal.getPhaseSeries().getColumn(0));
+        			result.put("recoveredSignal", signal.getRecoveredSeries().getColumn(0));
+        			
+        			session.getRemote().sendString(result.toString());
+    			}
+    		
     			    			
 			} catch (Exception e) {
 				e.printStackTrace();
