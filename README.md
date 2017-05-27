@@ -128,5 +128,5 @@ If this project helps you, please help cite the following paper. Thanks very muc
 
 ## Changelog
 
-* 2016/6/27 - release the Tagbeat v0.1
+* 2016/6/27 - release the Tagbeat v0.2
 * 2017/5/27 - release the Tagbeat v0.1
